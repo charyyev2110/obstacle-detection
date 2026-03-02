@@ -24,6 +24,7 @@ def distance():
     print ('Distance: %.2f' % dis)
     time.sleep_ms(300)'''
 
+dis = distance()
 def approach ():
     d = []
     for i in range (2):
@@ -42,18 +43,15 @@ def approach ():
         print ("object is not moving")
     elif x1 < -1: 
         print ("object is getting closer!!")
-        
+#will make the approach function have a value for difference in distance 
     
-while True:
-    approach()
-
-
 def prox (): 
-    while True:
-        dis = distance() 
-        #print ('distance: %.2f' %dis)
-        time.sleep (1)
-        if dis < 60: 
-            print ('the object is really close')
+    dis = distance() 
+    #print ('distance: %.2f' %dis)
+    time.sleep (1)
+    if dis < 60: 
+        print ('the object is really close')
 
-prox()v
+#will determine if this part is necessary 
+while True: 
+    approach ()
