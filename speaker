@@ -1,0 +1,59 @@
+import machine
+import time
+
+TRIG = machine.Pin(17,machine.Pin.OUT)
+ECHO = machine.Pin(16,machine.Pin.IN)
+
+def distance():
+    TRIG.low()
+    time.sleep_us(2)
+    TRIG.high()
+    time.sleep_us(10)
+    TRIG.low()
+    while not ECHO.value():
+        pass
+    time1 = time.ticks_us()
+    while ECHO.value():
+        pass
+    time2 = time.ticks_us()
+    during = time.ticks_diff(time2,time1)
+    return during * 340 / 2 / 10000
+
+'''while True:
+    dis = distance()
+    print ('Distance: %.2f' % dis)
+    time.sleep_ms(300)'''
+
+def approach ():
+    d = []
+    for i in range (2):
+        dis = distance()
+        #print ('Distance: %.2f' %dis)
+        d.append (dis)
+        time.sleep (1)
+    #print (d)
+    x = d[-1] - d[-2] 
+    x1 = round (x, 1)
+    #distance between two points taken to 1 decimal place
+    #print (x1)
+    if x1 > 1:
+        print ("object is getting further")
+    elif -1 < x1 < 1:
+        print ("object is not moving")
+    elif x1 < -1: 
+        print ("object is getting closer!!")
+        
+    
+while True:
+    approach()
+
+
+def prox (): 
+    while True:
+        dis = distance() 
+        #print ('distance: %.2f' %dis)
+        time.sleep (1)
+        if dis < 60: 
+            print ('the object is really close')
+
+prox()v
