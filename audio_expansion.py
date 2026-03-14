@@ -1,6 +1,4 @@
 from machine import I2S, Pin
-import math
-import array
 
 file = './audio2.wav'
 
@@ -36,3 +34,17 @@ def play_audio(file):
 
 
 play_audio(file)
+
+
+# //// IN ORDER TO MAKE IT DYNAMIC:
+#  1. INSTALL GTTS
+#  2. HAVE IT CONVERT STRING PARAMETER INTO AUDIO
+#  3. HAVE I2S SAY IT OUT LOUD
+
+#  work flow:
+# function("text") -> gTTS generates audio -> convert to WAV -> send to Pico -> play through speaker.
+
+# Cons:
+#  1. 1-2 second delay
+#  2. gtts runs only on computer
+#  3. need internet
