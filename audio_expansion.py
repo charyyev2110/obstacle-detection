@@ -1,4 +1,6 @@
 from machine import I2S, Pin
+import os
+import utime
 
 file = './audio2.wav'
 
@@ -19,7 +21,7 @@ audio = I2S(  # creates I2S audio object
 # WAV Player
 def play_audio(file):
     """
-    this plays whatever file you pass it as parameter
+
     """
     # create a chunk of memory to temp. hold audio bytes
     buffer = bytearray(4096)
@@ -33,18 +35,25 @@ def play_audio(file):
             audio.write(buffer[:n])
 
 
-play_audio(file)
+def talk(text):
+    words = text.lower().split()
+    # print(os.listdir())
+
+    for word in words:
+        # file = f'wavs/{word}.wav'
+        file = "wavs/" + word + ".wav"
+
+        try:
+            play_audio(file)
+            utime.sleep_ms(100)
+        except OSError:
+            print("Something went wrong", file)
 
 
-# //// IN ORDER TO MAKE IT DYNAMIC:
-#  1. INSTALL GTTS
-#  2. HAVE IT CONVERT STRING PARAMETER INTO AUDIO
-#  3. HAVE I2S SAY IT OUT LOUD
+# print(os.listdir("wavs"))
+print(os.listdir())
+talk('closer detected')
+# play_audio(file)
 
-#  work flow:
-# function("text") -> gTTS generates audio -> convert to WAV -> send to Pico -> play through speaker.
 
-# Cons:
-#  1. 1-2 second delay
-#  2. gtts runs only on computer
-#  3. need internet
+# ////////// HAVE TO FIX THE FOLDER LOCATION /////////
