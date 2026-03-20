@@ -41,7 +41,8 @@ def talk(text):
 
     for word in words:
         # file = f'wavs/{word}.wav'
-        file = "wavs/" + word + ".wav"
+        # file = "wavs/" + word + ".wav"
+        file = word + ".wav"
 
         try:
             play_audio(file)
@@ -50,10 +51,13 @@ def talk(text):
             print("Something went wrong", file)
 
 
-# print(os.listdir("wavs"))
+talk('object detected moving')
+
+s = os.statvfs("/")
+free_space = s[0] * s[3]
+print(free_space)
+
+# os.remove("left.wav")
+
+
 print(os.listdir())
-talk('closer detected')
-# play_audio(file)
-
-
-# ////////// HAVE TO FIX THE FOLDER LOCATION /////////
